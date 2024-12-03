@@ -1,0 +1,22 @@
+---
+import type { Image } from "../data/images";
+import GalleryItem from "./GalleryItem.astro";
+
+interface Props {
+  images: Image[];
+}
+
+const { images } = Astro.props;
+---
+
+<div class="gallery">
+  {images.map((image) => <GalleryItem image={image} />)}
+</div>
+
+<style>
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+</style>

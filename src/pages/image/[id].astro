@@ -1,0 +1,18 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ImageDetail from '../../components/ImageDetail.astro';
+import { images } from '../../data/images';
+
+export async function getStaticPaths() {
+  return images.map(image => ({
+    params: { id: image.id.toString() },
+    props: { image },
+  }));
+}
+
+const { image } = Astro.props;
+---
+
+<Layout title={image.title}>
+  <ImageDetail image={image} />
+</Layout>

@@ -1,0 +1,72 @@
+---
+import { Image } from "astro:assets";
+import type { Image as ImageType } from "../data/images";
+
+interface Props {
+  image: ImageType;
+}
+
+const { image } = Astro.props;
+---
+
+<div class="container">
+  <a href="/" class="back-button">&larr; Back to Gallery</a>
+  <div class="image-detail">
+    <Image
+      src={image.src}
+      alt={image.title}
+      width={image.width}
+      height={image.height}
+      transition:name={`image-${image.id}`}
+    />
+    <div class="image-info">
+      <h1>{image.title}</h1>
+      <p>{image.description}</p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .back-button {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    margin-bottom: 2rem;
+    color: var(--text);
+    text-decoration: none;
+    border-radius: 0.25rem;
+    background: white;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+  }
+
+  .image-detail {
+    background: white;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  }
+
+  .image-detail img {
+    width: 100%;
+    height: auto;
+    max-height: 70vh;
+    object-fit: contain;
+  }
+
+  .image-info {
+    padding: 2rem;
+  }
+
+  .image-info h1 {
+    margin: 0 0 1rem 0;
+  }
+
+  .image-info p {
+    color: #4b5563;
+    line-height: 1.5;
+  }
+</style>
